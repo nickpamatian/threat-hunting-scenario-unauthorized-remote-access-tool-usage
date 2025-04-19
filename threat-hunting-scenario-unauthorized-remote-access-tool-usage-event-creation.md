@@ -1,7 +1,7 @@
 # Threat Event (Unauthorized Remote Access Tool Usage)
 **Suspicious AnyDesk Execution and Connection Attempt**
 
-## Steps the "Bad Actor" took Create Logs and IoCs:
+## Steps the "Bad Actor" Took to Create Logs and IoCs:
 1. Download the AnyDesk executable: https://download.anydesk.com/AnyDesk.exe
 2. Launch the executable
 3. Simulate a connection attempt using a fake ID:  
