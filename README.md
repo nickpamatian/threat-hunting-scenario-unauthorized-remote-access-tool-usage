@@ -80,7 +80,7 @@ DeviceNetworkEvents
 
 ---
 
-### 4. Searched the `DeviceNetworkEvents` table to detect creation or movement of a potentially sensitive file
+### 4. Searched the `DeviceFileEvents` table to detect creation or movement of a potentially sensitive file
 
 A text document titled "Important-Documents.txt" was created at 2025-04-17T01:24:35.7554876Z. The contents of the document are currently unknown. While no direct evidence of data exfiltration was observed following the document's creation, the activity suggests data staging in preparation for potential future exfiltration. 
 
