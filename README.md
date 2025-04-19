@@ -26,7 +26,7 @@ A recent cybersecurity bulletin from CISA warned of increased abuse of legitimat
 
 ### 1. Searched the `DeviceFileEvents` table to detect download of AnyDesk.exe
 
-AnyDesk.exe was discovered being downloaded to the endpoint “apoy-threat-hun” from the user “apoy”. The user Downloaded AnyDesk.exe at 2025-04-17T01:21:17.3156655Z, from url: “https://download.anydesk.com/AnyDesk.exe”, then deleted AnyDesk.exe at 2025-04-17T01:25:56.3192816Z, approximately 4 minutes later. 
+AnyDesk.exe was discovered being downloaded to the endpoint “apoy-threat-hun” from the user “apoy”. The user downloaded AnyDesk.exe at 2025-04-17T01:21:17.3156655Z, from URL: “https://download.anydesk.com/AnyDesk.exe”, then deleted AnyDesk.exe at 2025-04-17T01:25:56.3192816Z, approximately 4 minutes later. 
 
 **Query used to locate events:**
 
@@ -64,7 +64,7 @@ DeviceProcessEvents
 
 ### 3. Searched the `DeviceNetworkEvents` table to detect outbound connection attempt by AnyDesk
 
-Successful connections were discovered from the endpoint “apoy-threat-hun” and remote IP addresses 57.129.37.75 and 5.188.124.23 being made on AnyDesk. The two IP addresses were confirmed to be associated with AnyDesk, indicating successful outbound connections to remote servers. 
+Successful connections were discovered from the endpoint “apoy-threat-hun” and remote IP addresses 57.129.37.75 and 5.188.124.23 being made by AnyDesk. The two IP addresses were confirmed to be associated with AnyDesk, indicating successful outbound connections to remote servers. 
 
 **Query used to locate events:**
 
@@ -80,7 +80,7 @@ DeviceNetworkEvents
 
 ---
 
-### 4. Searched the `DeviceNetworkEvents` table to detect creation or movement of sensitive-looking file
+### 4. Searched the `DeviceNetworkEvents` table to detect creation or movement of a potentially sensitive file
 
 A text document titled "Important-Documents.txt" was created at 2025-04-17T01:24:35.7554876Z. The contents of the document are currently unknown. While no direct evidence of data exfiltration was observed following the document's creation, the activity suggests data staging in preparation for potential future exfiltration. 
 
