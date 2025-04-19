@@ -56,6 +56,7 @@ DeviceFileEvents
 | where FileName contains "Important-Documents"
 | project Timestamp, DeviceName, InitiatingProcessAccountName, FileName, ActionType, FolderPath
 
+// Detect deletion of AnyDesk
 DeviceFileEvents
 | where FileName contains "AnyDesk.exe" and ActionType contains "FileDeleted"
 ```
