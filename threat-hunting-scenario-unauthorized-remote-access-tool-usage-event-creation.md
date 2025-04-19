@@ -6,7 +6,7 @@
 2. Launch the executable
 3. Simulate a connection attempt using a fake ID:  
 In the Remote Desk input box, enter: 123 456 789
-6. Create a folder on your desktop called ```important-documents.txt``` and add some fake entries
+6. Create a file on your desktop called ```important-documents.txt``` and add some fake entries
 7. Move the file to simulate internal staging of exfiltration:  
 Copy or move it to: C:\Users\Public\
 8. Close AnyDesk and delete the executable
@@ -38,27 +38,38 @@ Copy or move it to: C:\Users\Public\
 ```kql
 // Detect download of AnyDesk.exe
 DeviceFileEvents
+| where DeviceName == "apoy-threat-hun"
 | where FileName contains "AnyDesk.exe"
+| order by Timestamp desc
+| project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, FileName, FolderPath, FileOriginUrl, SHA256
 
 // Detect execution of AnyDesk.exe
 DeviceProcessEvents
 | where FileName contains "AnyDesk.exe"
+| where DeviceName  == "apoy-threat-hun"
+| order by Timestamp desc
 | project Timestamp, DeviceName, InitiatingProcessAccountName, FileName, ActionType, SHA256
 
 // Detect outbound connection attempt by AnyDesk
 DeviceNetworkEvents
 | where InitiatingProcessFileName contains "AnyDesk.exe"
-| project Timestamp, DeviceName, InitiatingProcessAccountName, LocalIP, RemoteIP, ActionType
+| where DeviceName == "apoy-threat-hun"
+| order by Timestamp desc
+| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, LocalIP, ActionType, RemoteIP 
 
 // Detect creation or movement of sensitive-looking file
 DeviceFileEvents
+| where FileName contains "important-documents"
 | where DeviceName == "apoy-threat-hun"
-| where FileName contains "Important-Documents"
-| project Timestamp, DeviceName, InitiatingProcessAccountName, FileName, ActionType, FolderPath
+| order by Timestamp desc
+| project Timestamp, DeviceName, InitiatingProcessAccountName,  ActionType, FileName, FolderPath, SHA256
 
 // Detect deletion of AnyDesk
 DeviceFileEvents
 | where FileName contains "AnyDesk.exe" and ActionType contains "FileDeleted"
+| where DeviceName == "apoy-threat-hun" 
+| order by Timestamp desc
+| project Timestamp, DeviceName, InitiatingProcessAccountName,  ActionType, FileName, FolderPath, SHA256
 ```
 
 ---
